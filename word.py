@@ -1,18 +1,45 @@
-def opening_game():
+def category_choosing():
     """
-    print the opening of the game
+    Print the opening of the game and choose the category of the word
+    :return: The category key to the words_dir directory
     """
     print(r"""Welcome to Hang Man
-  _    _                                         
- | |  | |                                        
- | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __  
- |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
- | |  | | (_| | | | | (_| | | | | | | (_| | | | |
- |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                      __/ |                      
-                     |___/
-Try to guess the word and save the man
-Guess your first letter""")
+      _    _                                         
+     | |  | |                                        
+     | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __  
+     |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+     | |  | | (_| | | | | (_| | | | | | | (_| | | | |
+     |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                          __/ |                      
+                         |___/""")
+    try:
+        category_num = int(input("select the category:\n1 - Food\n2 - Animals\n3 - Programming languages\n"))
+    except:
+        category_num = 1
+    if category_num == 1:
+        category = "food"
+    elif category_num == 2:
+        category = "animals"
+    elif category_num == 3:
+        category = "Programming languages"
+    else:
+        category = "food"
+    print("Try to guess the word and save the man\nGuess your first letter")
+    return category
+
+
+def choose_word(word_list, index):
+    """
+    # פונקציה שבוחרת מילה מתוך רשימת המילים
+    :param word_list: list of words from the dictionary
+    :param index: random number int
+    :return: the random chosen word
+    """
+
+    number_of_words = len(word_list)
+    while index > number_of_words:
+        index = index - number_of_words
+    return word_list[index]
 
 
 def check_valid_input(letter_guessed, old_letters_guessed):
@@ -76,22 +103,6 @@ def check_win(secret_word, old_letters_guessed):
         return True
 
 
-def choose_word(file_path, index):
-    """
-    # פונקציה שבוחרת מילה מתוך רשימת המילים
-    :param file_path: the list of word file path
-    :param index: random number int
-    :return: the random chosen word
-    """
-    open_file = open(file_path)
-    file_content = open_file.read()
-    word_list = file_content.split(",")
-    number_of_words = len(word_list)
-    while index > number_of_words:
-        index = index - number_of_words
-    return word_list[index]
-
-
 def print_hangman(num_of_tries):
     """
     :param num_of_tries: int number represent the number of fails attempts
@@ -101,10 +112,11 @@ def print_hangman(num_of_tries):
     print(HANGMAN_PHOTOS["stage_" + str(num_of_tries)])
 
 
-def end_game(end_game_result):
+def end_game(end_game_result, chosen_word):
     """
     :param end_game_result:use the return True or False of the function check_win
-    :return:print if the user win or lose
+    :param chosen_word: the word that was chosen to the game
+    :return print if the user win or lose
     """
     if end_game_result:
         print("You were able to successfully save the man\n", r"""     /\
@@ -112,7 +124,7 @@ def end_game(end_game_result):
     |____|    |
     |_||_|   / \ """)
     else:
-        print("Your man is dead, try again in the next life!")
+        print("Your man is dead, try again in the next life!\nthe word was", chosen_word)
         print(r"""    x-------x
     |       |
     |       0
@@ -170,3 +182,7 @@ HANGMAN_PHOTOS = {
     |      /|\ 
     |      / \ 
     |       """}
+
+words_dir = {"food": ["lemon", "banana", "orange", "milk", "agg"], "animals": ["cow", "lion", "dog",
+                                                                               "cat", "elefant"],
+             "Programming languages": ["python", "javascript", "java", "html", "ruby", "swift"]}
