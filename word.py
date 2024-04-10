@@ -13,7 +13,7 @@ def category_choosing():
                           __/ |                      
                          |___/""")
     try:
-        category_num = int(input("select the category:\n1 - Food\n2 - Animals\n3 - Programming languages\n"))
+        category_num = int(input("select the category:\n1 - Food\n2 - Animals\n3 - Programming languages\n4 - super heroes\n"))
     except:
         category_num = 1
     if category_num == 1:
@@ -22,6 +22,8 @@ def category_choosing():
         category = "animals"
     elif category_num == 3:
         category = "Programming languages"
+    elif category_num == 4:
+        category = "super heroes"
     else:
         category = "food"
     print("Try to guess the word and save the man\nGuess your first letter")
@@ -183,6 +185,7 @@ HANGMAN_PHOTOS = {
     |      / \ 
     |       """}
 
-words_dir = {"food": ["lemon", "banana", "orange", "milk", "agg"], "animals": ["cow", "lion", "dog",
-                                                                               "cat", "elefant"],
-             "Programming languages": ["python", "javascript", "java", "html", "ruby", "swift"]}
+words_dir = {"food": ["lemon", "banana", "orange", "milk", "agg"],
+             "animals": ["cow", "lion", "dog", "cat", "elefant"],
+             "Programming languages": ["python", "javascript", "java", "html", "ruby", "swift"],
+             "super heroes": ["batman", "superman", "spiderman", "ironman", "captainamerica", "thor",]}
