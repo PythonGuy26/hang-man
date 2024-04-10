@@ -1,12 +1,10 @@
 import random
 import word
-word_list_file_path = r"C:\script\Hangman\pythonProject1\hang_word.txt"
-random_index = random.randint(1, 100)
-chosen_word = word.choose_word(word_list_file_path, random_index)  # the game pick a word to guess
+category = word.category_choosing()
+random_index = random.randint(1, 10)
+chosen_word = word.choose_word(word.words_dir[category], random_index)  # the game pick a word to guess
 number_of_fails = 0
 list_of_already_guessed_letters = []
-print(chosen_word)
-word.opening_game()
 while number_of_fails <= 7:
     word.print_hangman(number_of_fails)
     print(word.show_hidden_word(chosen_word, list_of_already_guessed_letters))
@@ -21,5 +19,5 @@ while number_of_fails <= 7:
     word.try_update_letter_guessed(guessed_letter, list_of_already_guessed_letters)
     if word.check_win(chosen_word, list_of_already_guessed_letters):
         break
-word.end_game(word.check_win(chosen_word, list_of_already_guessed_letters))
+word.end_game(word.check_win(chosen_word, list_of_already_guessed_letters), chosen_word)
 c = input("Press Enter to Exit")
