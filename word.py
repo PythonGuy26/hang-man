@@ -39,7 +39,7 @@ def choose_word(word_list, index):
     """
 
     number_of_words = len(word_list)
-    while index > number_of_words:
+    while index >= number_of_words:
         index = index - number_of_words
     return word_list[index]
 
