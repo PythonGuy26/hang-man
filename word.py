@@ -1,3 +1,4 @@
+import time
 def category_choosing():
     """
     Print the opening of the game and choose the category of the word
