@@ -1,3 +1,4 @@
+import time
 import random
 import word
 category = word.category_choosing()
