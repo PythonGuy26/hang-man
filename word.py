@@ -3,15 +3,19 @@ def category_choosing():
     Print the opening of the game and choose the category of the word
     :return: The category key to the words_dir directory
     """
-    print(r"""Welcome to Hang Man
-      _    _                                         
-     | |  | |                                        
-     | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __  
-     |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+    string = """Welcome to Hang Man
+      _    _
+     | |  | |
+     | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __
+     |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \\
      | |  | | (_| | | | | (_| | | | | | | (_| | | | |
      |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                          __/ |                      
-                         |___/""")
+                          __/ |
+                         |___/"""
+
+    for char in string:
+        print(char, end='', flush=True)
+        time.sleep(0.01)
     try:
         category_num = int(input("select the category:\n1 - Food\n2 - Animals\n3 - Programming languages\n4 - super heroes\n"))
     except:
